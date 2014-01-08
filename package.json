@@ -1,7 +1,26 @@
 {
-	"name":"hubbub",
-	"version":"0.0.1",
-	"dependencies":{
-		"express":""
-	}
+  "name": "hubbub",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "",
+    "logfmt": "~0.18.1"
+  },
+  "main": "web.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ethanwelborn/hubbub.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/ethanwelborn/hubbub/issues"
+  },
+  "homepage": "https://github.com/ethanwelborn/hubbub",
+  "engines": {
+    "node": "0.10.x"
+  }
 }

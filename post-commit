@@ -1,0 +1,8 @@
+#!/bin/bash
+
+af update hubbub
+git push heroku master
+
+echo "Pushed to AppFog and Heroku"
+
+exit 0

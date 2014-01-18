@@ -1,6 +1,4 @@
 var express = require("express");
-
-console.log(express);
  
 var app = express();
 app.use(express.logger());
@@ -14,11 +12,11 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/app'));
   app.use(app.router);
-  app.engine('haml', require('hamljs').renderFile);
+  app.engine('html', require('ejs').renderFile);
 });
 
 app.get('/', function(request, response) {
-  response.render('app/index.haml')
+  response.render('index.html')
 });
 
 var port = process.env.PORT || 5000;

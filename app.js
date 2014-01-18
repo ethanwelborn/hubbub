@@ -1,12 +1,22 @@
-// web.js
 var express = require("express");
-var logfmt = require("logfmt");
+ 
 var app = express();
+app.use(express.logger());
 
-app.use(logfmt.requestLogger());
+// Configuration
 
-app.get('/', function(req, res) {
-  res.send('Hello World!');
+app.configure(function(){
+  app.set('views', __dirname + '/app');
+  //app.set('view engine', 'jade');
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(express.static(__dirname + '/app'));
+  app.use(app.router);
+  app.engine('html', require('ejs').renderFile);
+});
+
+app.get('/', function(request, response) {
+  response.render('index.html')
 });
 
 var port = process.env.PORT || 5000;

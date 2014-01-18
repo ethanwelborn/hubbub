@@ -2,7 +2,6 @@
   "name": "hubbub",
   "version": "0.0.0",
   "dependencies": {
-    "bower": "~1.2.8",
     "express": "~3.0.0",
     "ejs": "~0.8.4"
   },

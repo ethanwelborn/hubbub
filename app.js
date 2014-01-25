@@ -12,7 +12,6 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/app'));
   app.use(app.router);
-  app.engine('html', require('ejs').renderFile);
 });
 
 app.get('/', function(request, response) {

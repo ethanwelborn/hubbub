@@ -4,7 +4,7 @@ angular.module('hubbubApp', [])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'client/templates/home.jade',
+        templateUrl: 'client/views/home.jade',
         controller: 'HomeCtrl'
       })
       .otherwise({

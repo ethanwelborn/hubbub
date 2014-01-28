@@ -1,0 +1,5 @@
+name:  hubbub_pubspec
+description:  Hubbub pubspec
+
+dependencies:
+  angular: 0.9.4

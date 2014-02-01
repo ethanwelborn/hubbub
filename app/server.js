@@ -1,15 +1,29 @@
-var express = require('express');
+var express = require('express'),
+	client = require('./routes/clients');
 
 var app = express();
+
+app.configure(function() {
+	app.set('view engine', 'jade');
+	app.set('views', __dirname);
+	app.use(express.logger('dev'));
+	app.use(express.bodyParser());
+	app.use(express.static(__dirname + 'app'));
+});
 
 app.get('/', function(req, res) {
   res.render('index.jade');
 });
 
-app.get('/api/v1/clients', function(req, res) {
+/**
+ * Client Routes
+ */
+app.get('/api/v1/clients', client.findAll);
+app.get('/api/v1/clients/:id', client.findById);
+app.post('/api/v1/clients', client.addClient);
+app.put('/api/v1/clients/:id', client.updateClient);
+app.delete('/api/v1/clients/:id', client.deleteClient);
 
-});
 
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-}).listen(5000, '127.0.0.1');
+app.listen(5000);
+console.log('Listening on port 3000...');

@@ -25,5 +25,7 @@ app.put('/api/v1/clients/:id', client.updateClient);
 app.delete('/api/v1/clients/:id', client.deleteClient);
 
 
-app.listen(5000);
-console.log('Listening on port 3000...');
+var port = Number(process.env.PORT || 5000);
+app.listen(port, function() {
+  console.log("Listening on port " + port + "...");
+});

@@ -1,16 +1,20 @@
 var mongo = require('mongodb');
 
+var mongoUri = process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost/mydb';
+
 var Server = mongo.Server,
 	Db = mongo.Db,
 	BSON = mongo.BSONPure;
 
 var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('clientdb', server);
+db = new Db('hubbubdb', server);
 
 db.open(function(err, db) {
 	if (!err) {
-		console.log("Connected to 'clientdb' database");
-		db.collection('clients', {strict:true}, function(err, collection) {
+		console.log("Connected to 'hubbubdb' database");
+		db.collection('clients', {strict: true}, function(err, collection) {
 			if (err) {
 				console.log("The 'clients' collection doesn't exist. Creating it with sample data..");
 				populateDB();

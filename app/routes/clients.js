@@ -27,6 +27,16 @@ exports.findAll = function(req, res) {
 	});
 };
 
+exports.findById = function(req, res) {
+    var id = req.params.id;
+    console.log('Retrieving client: ' + id);
+    db.collection('clients', function(err, collection) {
+        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
+            res.send(item);
+        });
+    });
+};
+
 exports.addClient = function(req, res) {
 	var client = req.body;
 	console.log('Adding client: ' + JSON.stringify(client));
@@ -41,10 +51,6 @@ exports.addClient = function(req, res) {
 			}
 		});
 	});
-};
-
-exports.findById = function(req, res) {
-	res.send([{id: req.params.id, name: 'Drew Carey', description: 'Funny guy'}]);
 };
 
 exports.updateClient = function(req, res) {

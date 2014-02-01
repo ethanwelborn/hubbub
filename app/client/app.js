@@ -4,8 +4,8 @@ angular.module('hubbubApp', [])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.haml',
-        controller: 'MainCtrl'
+        templateUrl: 'client/views/home.jade',
+        controller: 'HomeCtrl'
       })
       .otherwise({
         redirectTo: '/'

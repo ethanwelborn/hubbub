@@ -1,5 +1,6 @@
 var express = require('express'),
-	client = require('./routes/clients');
+	client = require('./routes/clients'),
+	merchant = require('./routes/merchants');
 
 var app = express();
 
@@ -23,6 +24,15 @@ app.get('/api/v1/clients/:id', client.findById);
 app.post('/api/v1/clients', client.addClient);
 app.put('/api/v1/clients/:id', client.updateClient);
 app.delete('/api/v1/clients/:id', client.deleteClient);
+
+/**
+ * Merchant Routes
+ */
+app.get('/api/v1/merchants', merchant.findAll);
+app.get('/api/v1/merchants/:id', merchant.findById);
+app.post('/api/v1/merchants', merchant.addMerchant);
+app.put('/api/v1/merchants/:id', merchant.updateMerchant);
+app.delete('/api/v1/merchants/:id', merchant.deleteMerchant);
 
 
 var port = Number(process.env.PORT || 5000);

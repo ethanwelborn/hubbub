@@ -1,10 +1,13 @@
 var express = require('express'),
+	path = require('path'),
+    http = require('http'),
 	client = require('./routes/clients'),
 	merchant = require('./routes/merchants');
 
 var app = express();
 
 app.configure(function() {
+	app.set('port', process.env.PORT || 5000);
 	app.set('view engine', 'jade');
 	app.set('views', __dirname);
 	app.use(express.logger('dev'));
@@ -35,7 +38,6 @@ app.put('/api/v1/merchants/:id', merchant.updateMerchant);
 app.delete('/api/v1/merchants/:id', merchant.deleteMerchant);
 
 
-var port = Number(process.env.PORT || 5000);
-app.listen(port, function() {
-  console.log("Listening on port " + port + "...");
+http.createServer(app).listen(app.get('port'), function () {
+    console.log("Express server listening on port " + app.get('port'));
 });

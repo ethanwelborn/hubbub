@@ -12,8 +12,8 @@ db.open(function(err, db) {
 		console.log("Connected to 'hubbubdb' database");
 		db.collection('merchants', {strict: true}, function(err, collection) {
 			if (err) {
-				console.log("The 'merchants' collection doesn't exist. Creating it with sample data..");
-				populateDB();
+				// console.log("The 'merchants' collection doesn't exist. Creating it with sample data..");
+				// populateDB();
 			}
 		})
 	}

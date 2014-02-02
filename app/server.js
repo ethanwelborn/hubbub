@@ -12,11 +12,20 @@ app.configure(function() {
 	app.set('views', __dirname);
 	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
-	app.use(express.static(__dirname + 'app'));
+	app.use(express.methodOverride());
+	app.use(app.router);
+	app.use('/components', express.static(path.join(__dirname, 'bower_components')));
+  	app.use('/js', express.static(path.join(__dirname, 'client')));
+  	app.use('/style', express.static(path.join(__dirname, 'client/assets/style/stylesheets')));
 });
 
 app.get('/', function(req, res) {
-  res.render('index.jade');
+	res.render('index.jade');
+});
+
+app.get('/templates/:name', function (req, res)
+	{ var name = req.params.name;
+	res.render('client/templates/' + name);
 });
 
 /**

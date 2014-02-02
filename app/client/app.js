@@ -39,9 +39,25 @@ angular.module('hubbubApp', [])
         templateUrl: '/templates/merchant-new',
         controller: 'MerchantNewCtrl'
       })
-      .when('/add/merchant', {
-        templateUrl: '/templates/add-merchant',
-        controller: 'AddMerchantCtrl'
+      .when('/merchants/add', {
+        templateUrl: '/templates/merchant-add',
+        controller: 'MerchantAddCtrl'
+      })
+      .when('/interactions', {
+        templateUrl: '/templates/interaction-list',
+        controller: 'InteractionListCtrl'
+      })
+      .when('/interactions/:interactionId', {
+        templateUrl: '/templates/interaction-view',
+        controller: 'InteractionViewCtrl'
+      })
+      .when('/interactions/merchants/:merchantId', {
+        templateUrl: '/templates/interaction-merchant-list',
+        controller: 'InteractionMerchantListCtrl'
+      })
+      .when('/interactions/clients/:clientId', {
+        templateUrl: '/templates/interaction-client-list',
+        controller: 'InteractionClientListCtrl'
       })
       .otherwise({
         templateUrl: 'templates/404'

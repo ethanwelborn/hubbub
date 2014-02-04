@@ -19,7 +19,7 @@ angular.module('hubbubApp', [])
         templateUrl: '/templates/client-edit',
         controller: 'ClientEditCtrl'
       })
-      .when('/clients/:clientId/new', {
+      .when('/clients/create/new', {
         templateUrl: '/templates/client-new',
         controller: 'ClientNewCtrl'
       })
@@ -35,7 +35,7 @@ angular.module('hubbubApp', [])
         templateUrl: '/templates/merchant-edit',
         controller: 'MerchantEditCtrl'
       })
-      .when('/merchants/:merchantId/new', {
+      .when('/merchants/create/new', {
         templateUrl: '/templates/merchant-new',
         controller: 'MerchantNewCtrl'
       })

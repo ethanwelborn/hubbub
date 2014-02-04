@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('hubbubApp')
-  .controller('MerchantListCtrl', function ($scope) {
-    $scope.clients = [
-    	'jeff',
-    	'harold',
-    	'ken'
-    ];
-  });
+  .controller('MerchantListCtrl', ['$http', '$scope', function ($http, $scope) {
+  	$scope.merchants = {};
+
+    $http.get('/api/v1/merchants')
+    	.success(function (data) {
+	        $scope.merchants = data;
+	    });
+  }]);

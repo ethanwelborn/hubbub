@@ -40,10 +40,10 @@ exports.findById = function(req, res) {
 exports.addClient = function(req, res) {
 	var client = req.body;
 	console.log('Adding client: ' + JSON.stringify(client));
-	db.collection('client', function(err, collection) {
+	db.collection('clients', function(err, collection) {
 		collection.insert(client, {safe: true}, function(err, result) {
 			if (err) {
-				res.send({'error': 'An error has occured.'});
+				res.send({'error': 'An error has occured - ' + err});
 			}
 			else {
 				console.log('Success: ' + JSON.stringify(result[0]));

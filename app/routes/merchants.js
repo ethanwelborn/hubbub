@@ -12,8 +12,8 @@ db.open(function(err, db) {
 		console.log("Connected to 'hubbubdb' database");
 		db.collection('merchants', {strict: true}, function(err, collection) {
 			if (err) {
-				// console.log("The 'merchants' collection doesn't exist. Creating it with sample data..");
-				// populateDB();
+				console.log("The 'merchants' collection doesn't exist. Creating it with sample data..");
+				populateDB();
 			}
 		})
 	}
@@ -40,10 +40,10 @@ exports.findById = function(req, res) {
 exports.addMerchant = function(req, res) {
 	var merchant = req.body;
 	console.log('Adding merchant: ' + JSON.stringify(merchant));
-	db.collection('merchant', function(err, collection) {
+	db.collection('merchants', function(err, collection) {
 		collection.insert(merchant, {safe: true}, function(err, result) {
 			if (err) {
-				res.send({'error': 'An error has occured.'});
+				res.send({'error': 'An error has occured - ' + err});
 			}
 			else {
 				console.log('Success: ' + JSON.stringify(result[0]));

@@ -1,0 +1,18 @@
+label Client Name
+br
+input(type='text', placeholder='Client name', ng-model='client.name')
+p {{client.name}}
+br
+br
+label Client Username
+br
+input(type='text', placeholder='Client username', ng-model='client.username')
+p {{client.username}}
+br
+br
+label Client Password
+br
+input(type='text', placeholder='Client password', ng-model='client.password')
+p {{client.password}}
+br
+input(type='submit', value='Create Account', ng-click='createClient()')

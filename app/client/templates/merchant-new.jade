@@ -1,0 +1,18 @@
+label Merchant Name
+br
+input(type='text', placeholder='Merchant name', ng-model='merchant.name')
+p {{merchant.name}}
+br
+br
+label Merchant Username
+br
+input(type='text', placeholder='Merchant username', ng-model='merchant.username')
+p {{merchant.username}}
+br
+br
+label Merchant Password
+br
+input(type='text', placeholder='Merchant password', ng-model='merchant.password')
+p {{merchant.password}}
+br
+input(type='submit', value='Create Account', ng-click='createMerchant()')

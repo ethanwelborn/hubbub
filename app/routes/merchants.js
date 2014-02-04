@@ -4,7 +4,9 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
-var server = new Server('localhost', 27017, {auto_reconnect: true});
+var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'localhost';
+
+var server = new Server(mongoUri, 27017, {auto_reconnect: true});
 db = new Db('hubbubdb', server, {safe: true});
 
 db.open(function(err, db) {

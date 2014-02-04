@@ -8,7 +8,7 @@ var Server = mongo.Server,
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'localhost';
 
 if (mongoUri != 'localhost') {
-    mongo.Db.connect(mongoUri, function (err, db) {});
+    db = mongo.Db.connect(mongoUri, function (err, db) {});
 }
 else {
     var server = new Server(mongoUri, 27017, {auto_reconnect: true});

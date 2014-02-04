@@ -4,25 +4,42 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
-var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'localhost';
+db = null;
 
-if (mongoUri != 'localhost') {
-    mongo.Db.connect(mongoUri, function (err, db) {});
+var mongoUri = process.env.MONGOLAB_URI || 'localhost';
+
+if (process.env.MONGOLAB_URI) {
+    //heroku
+    var dbConnectionOpen = function(err, database) {
+        db = database;
+        if (!err) {
+            console.log("Connected to 'hubbubdb' database");
+            db.collection('clients', {safe: true}, function(err, collection) {
+                if (err) {
+                    console.log("The 'clients' collection doesn't exist.");
+                    populateDB();
+                }
+            });
+        }
+    };
+
+    mongo.connect(mongoUri, {}, dbConnectionOpen);
 }
 else {
+    // local dev
     var server = new Server(mongoUri, 27017, {auto_reconnect: true});
     db = new Db('hubbubdb', server, {safe: true});
 
     db.open(function(err, db) {
-    	if (!err) {
-    		console.log("Connected to 'hubbubdb' database");
-    		db.collection('merchants', {strict: true}, function(err, collection) {
-    			if (err) {
-    				console.log("The 'merchants' collection doesn't exist. Creating it with sample data..");
-    				populateDB();
-    			}
-    		})
-    	}
+        if (!err) {
+            console.log("Connected to 'hubbubdb' database");
+            db.collection('clients', {strict: true}, function(err, collection) {
+                if (err) {
+                    // console.log("The 'clients' collection doesn't exist. Creating it with sample data..");
+                    // populateDB();
+                }
+            })
+        }
     });
 }
 

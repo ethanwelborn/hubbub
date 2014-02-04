@@ -4,13 +4,29 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
+db = null;
 
-var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'localhost';
+var mongoUri = process.env.MONGOLAB_URI || 'localhost';
 
-if (mongoUri != 'localhost') {
-    db = mongo.Db.connect(mongoUri, function (err, db) {});
+if (process.env.MONGOLAB_URI) {
+    //heroku
+    var dbConnectionOpen = function(err, database) {
+        db = database;
+        if (!err) {
+            console.log("Connected to 'hubbubdb' database");
+            db.collection('clients', {safe: true}, function(err, collection) {
+                if (err) {
+                    console.log("The 'clients' collection doesn't exist.");
+                    populateDB();
+                }
+            });
+        }
+    };
+
+    mongo.connect(mongoUri, {}, dbConnectionOpen);
 }
 else {
+    // local dev
     var server = new Server(mongoUri, 27017, {auto_reconnect: true});
     db = new Db('hubbubdb', server, {safe: true});
 
@@ -19,8 +35,8 @@ else {
             console.log("Connected to 'hubbubdb' database");
             db.collection('clients', {strict: true}, function(err, collection) {
                 if (err) {
-                    console.log("The 'merchants' collection doesn't exist. Creating it with sample data..");
-                    populateDB();
+                    // console.log("The 'clients' collection doesn't exist. Creating it with sample data..");
+                    // populateDB();
                 }
             })
         }

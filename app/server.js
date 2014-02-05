@@ -2,7 +2,8 @@ var express = require('express'),
 	path = require('path'),
     http = require('http'),
 	client = require('./routes/clients'),
-	merchant = require('./routes/merchants');
+	merchant = require('./routes/merchants'),
+	interaction = require('./routes/interactions');
 
 var app = express();
 
@@ -45,6 +46,16 @@ app.get('/api/v1/merchants/:id', merchant.findById);
 app.post('/api/v1/merchants', merchant.addMerchant);
 app.put('/api/v1/merchants/:id', merchant.updateMerchant);
 app.delete('/api/v1/merchants/:id', merchant.deleteMerchant);
+
+/**
+ * Interaction Routes
+ */
+app.get('/api/v1/interactions/all/:id', interaction.findAll);
+app.get('/api/v1/interactions/:id', interaction.findById);
+app.post('/api/v1/interactions', interaction.addInteraction);
+app.put('/api/v1/interactions/:id', interaction.updateInteraction);
+app.delete('/api/v1/interactions/:id', interaction.deleteInteraction);
+app.get('/api/v1/interactions/:clientId/:merchantId', interaction.findInteractions)
 
 
 http.createServer(app).listen(app.get('port'), function () {

@@ -1,2 +1,10 @@
 p.
 	client login
+div
+	input(type='text', placeholder='username', name='client[username]', ng-model='client.username')
+	br
+	input(type='password', placeholder='password', name='client[password]', ng-model='client.password')
+	br
+	input(type='submit', value='Log In', ng-click='login()')
+p.
+	Or <a href='/#/clients/create/new'>create a new account.</a>

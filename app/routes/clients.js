@@ -35,7 +35,7 @@ else {
             console.log("Connected to 'hubbubdb' database");
             db.collection('clients', {strict: true}, function(err, collection) {
                 if (err) {
-                    // console.log("The 'clients' collection doesn't exist. Creating it with sample data..");
+                    console.log("The 'clients' collection doesn't exist.");
                     // populateDB();
                 }
             })

@@ -1,2 +1,10 @@
 p.
 	merchant login
+div
+	input(type='text', placeholder='username', name='merchant[username]', ng-model='merchant.username')
+	br
+	input(type='password', placeholder='password', name='merchant[password]', ng-model='merchant.password')
+	br
+	input(type='submit', value='Log In', ng-click='login()')
+p.
+	Or <a href='/#/merchants/create/new'>create a new account.</a>

@@ -1,9 +1,12 @@
 'use strict';
 
 angular.module('hubbubApp')
-  .controller('InteractionViewCtrl', ['$scope', function ($scope) {
-    $scope.client = {
-    	'name': 'Mel Brooks',
-    	'info': 'Funny director.'
-    };
+  .controller('InteractionViewCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+    $scope.interaction = {};
+
+    $http.get('/api/v1/interactions/'+$routeParams.interactionId)
+    	.success(function (data) {
+			console.log(data);
+        	$scope.interaction = data;
+    	});
   }]);

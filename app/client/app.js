@@ -11,6 +11,10 @@ angular.module('hubbubApp', [])
         templateUrl: '/templates/client-list',
         controller: 'ClientListCtrl'
       })
+      .when('/clients/login/as', {
+        templateUrl: '/templates/client-login',
+        controller: 'ClientLoginCtrl'
+      })
       .when('/clients/:clientId', {
         templateUrl: '/templates/client-view',
         controller: 'ClientViewCtrl'
@@ -26,6 +30,10 @@ angular.module('hubbubApp', [])
       .when('/merchants', {
         templateUrl: '/templates/merchant-list',
         controller: 'MerchantListCtrl'
+      })
+      .when('/merchants/login/as', {
+        templateUrl: '/templates/merchant-login',
+        controller: 'MerchantLoginCtrl'
       })
       .when('/merchants/:merchantId', {
         templateUrl: '/templates/merchant-view',

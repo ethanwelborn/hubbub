@@ -61,6 +61,18 @@ exports.findById = function(req, res) {
     });
 };
 
+exports.loginAs = function(req, res) {
+    var username, password;
+    username = req.body.username;
+    password = req.body.password;
+    console.log('Attempting login as: ' + username + ' with password ' + password);
+    db.collection('clients', function(err, collection) {
+        collection.findOne({'username': username, 'password': password}, function(err, item) {
+            res.send(item);
+        });
+    });
+};
+
 exports.addClient = function(req, res) {
 	var client = req.body;
 	console.log('Adding client: ' + JSON.stringify(client));

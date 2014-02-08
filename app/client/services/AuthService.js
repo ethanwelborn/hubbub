@@ -8,14 +8,15 @@ angular.module('hubbubApp')
     };
 
 	  	return {
-		    login: function() {
+		    login: function(id, username) {
 		    	currentUser = {
-		    		_id: '52f1bcb023f1ba8b392f6c44',
-		    		username: 'testclient'
+		    		_id: id,
+		    		username: username
 		    	};
 		    },
-		    logout: function() {},
-		    isLoggedIn: function() {},
+		    logout: function() {
+		    	currentUser = {};
+		    },
 		    currentUser: function() {
 		    	return currentUser;
 		    }

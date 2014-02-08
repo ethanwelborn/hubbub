@@ -6,5 +6,9 @@ div
 	input(type='password', placeholder='password', name='client[password]', ng-model='client.password')
 	br
 	input(type='submit', value='Log In', ng-click='login()')
+
+.error(ng-show='error.invalid').
+	Invalid Username/Password Combination
+	
 p.
 	Or <a href='/#/clients/create/new'>create a new account.</a>

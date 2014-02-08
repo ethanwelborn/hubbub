@@ -61,6 +61,18 @@ exports.findById = function(req, res) {
     });
 };
 
+exports.loginAs = function(req, res) {
+    var username, password;
+    username = req.body.username;
+    password = req.body.password;
+    console.log('Attempting login as: ' + username + ' with password ' + password);
+    db.collection('merchants', function(err, collection) {
+        collection.findOne({'username': username, 'password': password}, function(err, item) {
+            res.send(item);
+        });
+    });
+};
+
 exports.addMerchant = function(req, res) {
 	var merchant = req.body;
 	console.log('Adding merchant: ' + JSON.stringify(merchant));

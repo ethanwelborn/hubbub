@@ -6,5 +6,9 @@ div
 	input(type='password', placeholder='password', name='merchant[password]', ng-model='merchant.password')
 	br
 	input(type='submit', value='Log In', ng-click='login()')
+
+.error(ng-show='error.invalid').
+	Invalid Username/Password Combination
+	
 p.
 	Or <a href='/#/merchants/create/new'>create a new account.</a>

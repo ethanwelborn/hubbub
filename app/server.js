@@ -34,6 +34,7 @@ app.get('/templates/:name', function (req, res)
  */
 app.get('/api/v1/clients', client.findAll);
 app.get('/api/v1/clients/:id', client.findById);
+app.post('/api/v1/clients/attempt/login', client.loginAs);
 app.post('/api/v1/clients', client.addClient);
 app.put('/api/v1/clients/:id', client.updateClient);
 app.delete('/api/v1/clients/:id', client.deleteClient);
@@ -43,6 +44,7 @@ app.delete('/api/v1/clients/:id', client.deleteClient);
  */
 app.get('/api/v1/merchants', merchant.findAll);
 app.get('/api/v1/merchants/:id', merchant.findById);
+app.post('/api/v1/merchants/attempt/login', merchant.loginAs);
 app.post('/api/v1/merchants', merchant.addMerchant);
 app.put('/api/v1/merchants/:id', merchant.updateMerchant);
 app.delete('/api/v1/merchants/:id', merchant.deleteMerchant);

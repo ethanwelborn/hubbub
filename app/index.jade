@@ -2,6 +2,7 @@ doctype html
 html(lang='en')
   head
     title= pageTitle
+    link(rel='stylesheet', href='/css/gumby.css', type='text/css')
   body(ng-app='hubbubApp')
     .sidebar(ng-controller='SidebarCtrl', style='float:left; width:200px;')
         div(style='width:200px;', ng-show='variables.showSidebar')

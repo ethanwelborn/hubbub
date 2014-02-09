@@ -1,11 +1,13 @@
-p.
+h1.
 	merchant login
-div
-	input(type='text', placeholder='username', name='merchant[username]', ng-model='merchant.username')
-	br
-	input(type='password', placeholder='password', name='merchant[password]', ng-model='merchant.password')
-	br
-	input(type='submit', value='Log In', ng-click='login()')
+form(ng-submit='login()')
+	.field
+		input.wide.input(type='text', placeholder='username', name='merchant[username]', ng-model='merchant.username')
+	.field
+		input.wide.input(type='password', placeholder='password', name='merchant[password]', ng-model='merchant.password')
+	.info.btn.metro.medium.icon-right.entypo.icon-login
+		a(ng-click='login()') Log In
+		input.ghost-submit(type='submit', hidefocus='true', tabindex='-1')
 
 .error(ng-show='error.invalid').
 	Invalid Username/Password Combination

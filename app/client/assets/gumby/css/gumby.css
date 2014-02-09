@@ -1685,3 +1685,11 @@ table.rounded thead th, table.rounded thead td, table.rounded caption + tbody tr
 .parallax { background-attachment: fixed !important; }
 
 .oldie .parallax, .ie9 .parallax { background-attachment: static !important; }
+
+.ghost-submit { position: absolute !important; height: 0px !important; width: 0px !important; border: none !important; padding: 0 !important; }
+
+.position-right { position: absolute; right: 0; }
+
+.float-right { float: right; }
+
+.navbar ul li > a:hover { background: #868d92; }

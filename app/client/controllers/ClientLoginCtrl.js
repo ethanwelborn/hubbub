@@ -3,8 +3,8 @@
 angular.module('hubbubApp')
   .controller('ClientLoginCtrl', ['$scope', '$http', '$location', '$cookies', function ($scope, $http, $location, $cookies) {
     // log out any user
-    $cookies.loggedIn = '';
-    $cookies.type = '';
+    $cookies.hubbub_loggedIn = '';
+    $cookies.hubbub_type = '';
 
     $scope.client = {};
     $scope.error = {};
@@ -21,9 +21,10 @@ angular.module('hubbubApp')
     			}
     		).success(function (data) {
     			if (data != '') {
-    				$cookies.loggedIn = data._id;
-    				$cookies.type = 'clients';
-    				$location.path('/clients/'+$cookies.loggedIn);
+    				$cookies.hubbub_loggedIn = data._id;
+                    $cookies.hubbub_username = data.username;
+    				$cookies.hubbub_type = 'clients';
+    				$location.path('/clients/'+$cookies.hubbub_loggedIn);
     			}
     			else {
     				$scope.error.invalid = true;

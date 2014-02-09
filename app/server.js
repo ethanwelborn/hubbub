@@ -18,6 +18,7 @@ app.configure(function() {
 	app.use('/components', express.static(path.join(__dirname, 'bower_components')));
   	app.use('/js', express.static(path.join(__dirname, 'client')));
   	app.use('/css', express.static(path.join(__dirname, 'client/assets/gumby/css')));
+  	app.use('/fonts', express.static(path.join(__dirname, 'client/assets/gumby/fonts')));
 });
 
 app.get('/', function(req, res) {

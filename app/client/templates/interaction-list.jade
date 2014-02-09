@@ -1,8 +1,17 @@
-{{currentUser}}
-
-div(ng-repeat='interaction in interactions', style='width:400px; display:block;')
-	p {{interaction.clientId}}
-	p {{interaction.merchantId}}
-	p {{interaction.metric}}
-	a(href='/#/interactions/{{interaction._id}}') View this Interaction
-	hr
+table.striped
+	thead
+		tr
+			th.
+				Client
+			th.
+				Merchant
+			th.
+				Metric
+			th.
+				Link
+	tr(ng-repeat='interaction in interactions')
+		td {{interaction.clientId}}
+		td {{interaction.merchantId}}
+		td {{interaction.metric}}
+		td
+			a(href='/#/interactions/{{interaction._id}}') View Interaction

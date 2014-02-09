@@ -3,21 +3,42 @@ html(lang='en')
   head
     title= pageTitle
     link(rel='stylesheet', href='/css/gumby.css', type='text/css')
-  body(ng-app='hubbubApp')
-    .sidebar(ng-controller='SidebarCtrl', style='float:left; width:200px;')
-        div(style='width:200px;', ng-show='variables.showSidebar')
-            a(href='/#/interactions') My Interactions
-            br
-            a(href='/#/{{user.type}}/{{user.id}}') My Profile
-            br
-            a(ng-click='logOut()', href='#') Log Out of Hubbub
+  body(ng-app='hubbubApp', ng-controller='PageCtrl')
+    #main-nav.navbar.metro
+        .row
+            a.toggle(gumby-trigger='#nav1 > ul', href='#')
+                i.icon-menu
+            h1.four.columns.logo
+                i HB
+            ul.eight.columns
+                li
+                    a(href='/#/') Home
+                li(ng-show="user.id == ''")
+                    a(href='/#/merchants/login/as') Merchant Login
+                li(ng-show="user.id == ''")
+                    a(href='/#/clients/login/as') Client Login
+                li(ng-show="user.id != ''")
+                    a(href='/#/{{user.type}}/{{user.id}}') Profile
+                li(ng-show="user.id != ''")
+                    a(href='/#/interactions') Interactions
+                li(ng-show="user.id != ''")
+                    a(href='/#/{{user.type}}/login/as') Log Out
+    #wrapper.row
+        .sidebar.three.columns(ng-show='variables.showSidebar')
+            ul
+                li
+                    a(href='/#/interactions') My Interactions
+                li
+                    a(href='/#/{{user.type}}/{{user.id}}') My Profile
+                li
+                    a(ng-click='logOut()', href='#') Log Out of Hubbub
 
-    .container(ng-view='', style='float:left; width:500px;')
+        .container.columns(ng-view='', ng-class="{nine: variables.showSidebar, twelve: !variables.showSidebar}")
 
     script(type='text/javascript', src='/components/angular/angular.min.js')
     script(type='text/javascript', src='/components/angular-cookies/angular-cookies.min.js')
     script(type='text/javascript', src='/js/app.js')
-    script(type='text/javascript', src='/js/controllers/SidebarCtrl.js')
+    script(type='text/javascript', src='/js/controllers/PageCtrl.js')
     script(type='text/javascript', src='/js/controllers/HomeCtrl.js')
     script(type='text/javascript', src='/js/controllers/ClientListCtrl.js')
     script(type='text/javascript', src='/js/controllers/ClientViewCtrl.js')

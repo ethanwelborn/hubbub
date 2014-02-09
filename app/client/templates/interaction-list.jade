@@ -4,4 +4,5 @@ div(ng-repeat='interaction in interactions', style='width:400px; display:block;'
 	p {{interaction.clientId}}
 	p {{interaction.merchantId}}
 	p {{interaction.metric}}
+	a(href='/#/interactions/{{interaction._id}}') View this Interaction
 	hr

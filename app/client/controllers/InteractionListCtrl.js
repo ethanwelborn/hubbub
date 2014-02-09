@@ -1,13 +1,12 @@
 'use strict';
 
 angular.module('hubbubApp')
-  .controller('InteractionListCtrl', ['$scope', 'AuthService', '$http', function ($scope, AuthService, $http) {
-    $scope.currentUser = AuthService.currentUser();
+  .controller('InteractionListCtrl', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
     $scope.interactions = {};
+    console.log($cookies.loggedIn);
 
-    $http.get('/api/v1/interactions/all/'+$scope.currentUser._id)
+    $http.get('/api/v1/interactions/all/'+$cookies.loggedIn)
     	.success(function (data) {
-			console.log(data);
         	$scope.interactions = data;
     	});
   }]);

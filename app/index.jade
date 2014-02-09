@@ -3,11 +3,20 @@ html(lang='en')
   head
     title= pageTitle
   body(ng-app='hubbubApp')
-    .container(ng-view='')
+    .sidebar(ng-controller='SidebarCtrl', style='float:left; width:200px;')
+        div(style='width:200px;', ng-show='variables.showSidebar')
+            a(href='/#/interactions') My Interactions
+            br
+            a(href='/#/{{user.type}}/{{user.id}}') My Profile
+            br
+            a(ng-click='logOut()', href='#') Log Out of Hubbub
+
+    .container(ng-view='', style='float:left; width:500px;')
 
     script(type='text/javascript', src='/components/angular/angular.min.js')
+    script(type='text/javascript', src='/components/angular-cookies/angular-cookies.min.js')
     script(type='text/javascript', src='/js/app.js')
-    script(type='text/javascript', src='/js/services/AuthService.js')
+    script(type='text/javascript', src='/js/controllers/SidebarCtrl.js')
     script(type='text/javascript', src='/js/controllers/HomeCtrl.js')
     script(type='text/javascript', src='/js/controllers/ClientListCtrl.js')
     script(type='text/javascript', src='/js/controllers/ClientViewCtrl.js')

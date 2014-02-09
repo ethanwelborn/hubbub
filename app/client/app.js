@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hubbubApp', [])
+angular.module('hubbubApp', ['ngCookies'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

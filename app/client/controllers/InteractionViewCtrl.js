@@ -6,7 +6,6 @@ angular.module('hubbubApp')
 
     $http.get('/api/v1/interactions/'+$routeParams.interactionId)
     	.success(function (data) {
-			console.log(data);
         	$scope.interaction = data;
     	});
   }]);

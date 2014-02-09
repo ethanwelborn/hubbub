@@ -6,9 +6,6 @@ angular.module('hubbubApp')
   	if (!$cookies.hubbub_loggedIn) {
   		$cookies.hubbub_loggedIn = '';
   	}
-
-  	$scope.variables = {};
-  	$scope.variables.showSidebar = $cookies.hubbub_loggedIn != '';
   
   	$scope.user = {};
   	$scope.user.id = $cookies.hubbub_loggedIn;
@@ -16,7 +13,6 @@ angular.module('hubbubApp')
     $scope.user.username = $cookies.hubbub_username;
 
   	$scope.$watch(function() { return $cookies.hubbub_loggedIn; }, function() {
-    	$scope.variables.showSidebar = $cookies.hubbub_loggedIn != '';
     	$scope.user.id = $cookies.hubbub_loggedIn;
     	$scope.user.type = $cookies.hubbub_type;
       $scope.user.username = $cookies.hubbub_username;

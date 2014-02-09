@@ -22,18 +22,10 @@ html(lang='en')
                 li(ng-show="user.id != ''")
                     a(href='/#/interactions') Interactions
                 li(ng-show="user.id != ''")
-                    a(href='/#/{{user.type}}/login/as') Log Out
+                    a(href='#', ng-click='logOut()') Log Out
     #wrapper.row
-        .sidebar.three.columns(ng-show='variables.showSidebar')
-            ul
-                li
-                    a(href='/#/interactions') My Interactions
-                li
-                    a(href='/#/{{user.type}}/{{user.id}}') My Profile
-                li
-                    a(ng-click='logOut()', href='#') Log Out of Hubbub
 
-        .container.columns(ng-view='', ng-class="{nine: variables.showSidebar, twelve: !variables.showSidebar}")
+        .container.columns.twelve(ng-view='')
 
     script(type='text/javascript', src='/components/angular/angular.min.js')
     script(type='text/javascript', src='/components/angular-cookies/angular-cookies.min.js')

@@ -1,16 +1,19 @@
 h1.
 	merchant login
-form(ng-submit='login()')
-	.field
-		input.wide.input(type='text', placeholder='username', name='merchant[username]', ng-model='merchant.username')
-	.field
-		input.wide.input(type='password', placeholder='password', name='merchant[password]', ng-model='merchant.password')
-	.info.btn.metro.medium.icon-right.entypo.icon-login
-		a(ng-click='login()') Log In
-		input.ghost-submit(type='submit', hidefocus='true', tabindex='-1')
 
-.error(ng-show='error.invalid').
-	Invalid Username/Password Combination
-	
-p.
-	Or <a href='/#/merchants/create/new'>create a new account.</a>
+.row
+	.eight.columns
+		.alert.danger(ng-show='error.invalid').
+			Invalid Username/Password Combination
+		
+		form(ng-submit='login()')
+			.field
+				input.input(type='text', placeholder='username', name='merchant[username]', ng-model='merchant.username')
+			.field
+				input.input(type='password', placeholder='password', name='merchant[password]', ng-model='merchant.password')
+			.info.btn.metro.medium.icon-right.entypo.icon-login
+				a(ng-click='login()') Log In
+				input.ghost-submit(type='submit', hidefocus='true', tabindex='-1')
+		
+	.four.columns.
+		Or <a href='/#/merchants/create/new'>create a new account.</a>

@@ -11,7 +11,7 @@ var wwwhisper;
 // wwwhisper setup for heroku
 if (process.env.PORT) {
 	wwwhisper = require('connect-wwwhisper');
-	app.use(wwwhisper(false));
+	app.use(wwwhisper());
 }
 
 app.configure(function() {

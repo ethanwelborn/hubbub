@@ -6,6 +6,13 @@ var express = require('express'),
 	interaction = require('./routes/interactions');
 
 var app = express();
+var wwwhisper;
+
+// wwwhisper setup for heroku
+if (process.env.PORT) {
+	wwwhisper = require('connect-wwwhisper');
+	app.use(wwwhisper(false));
+}
 
 app.configure(function() {
 	app.set('port', process.env.PORT || 5000);
@@ -17,6 +24,7 @@ app.configure(function() {
 	app.use(app.router);
 	app.use('/components', express.static(path.join(__dirname, 'bower_components')));
   	app.use('/js', express.static(path.join(__dirname, 'client')));
+  	app.use('/img', express.static(path.join(__dirname, 'client/assets/img')));
   	app.use('/css', express.static(path.join(__dirname, 'client/assets/gumby/css')));
   	app.use('/fonts', express.static(path.join(__dirname, 'client/assets/gumby/fonts')));
 });

@@ -11,6 +11,14 @@ angular.module('hubbubApp')
 
     $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
     $scope.login = function() {
+
+        $scope.error = {};
+
+        if (!$scope.client.username || !$scope.client.password) {
+            $scope.error.empty = true;
+            return;
+        }
+
     	$http.post(
     			'/api/v1/clients/attempt/login',
     			JSON.stringify($scope.client),

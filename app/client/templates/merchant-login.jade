@@ -1,10 +1,13 @@
 h1.
-	merchant login
+	merchant <span class='mint'>login</span>
 
 .row
 	.eight.columns
 		.alert.danger(ng-show='error.invalid').
 			Invalid Username/Password Combination
+
+		.alert.danger(ng-show='error.empty').
+			All fields must be filled out
 		
 		form(ng-submit='login()')
 			.field
@@ -16,4 +19,4 @@ h1.
 				input.ghost-submit(type='submit', hidefocus='true', tabindex='-1')
 		
 	.four.columns.
-		Or <a href='/#/merchants/create/new'>create a new account.</a>
+		or <a href='/#/merchants/create/new'>create a new account.</a>

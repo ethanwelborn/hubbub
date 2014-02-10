@@ -29,4 +29,10 @@ angular.module('hubbubApp')
     	$location.path('/');
     };
 
+    $scope.matchPath = function(path) {
+      if ($location.path() === '/' && path === '/') { return 'active'; }
+      
+      return ($location.path().indexOf(path) !== -1 && path !== '/') ? 'active' : '';
+    };
+
   }]);

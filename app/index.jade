@@ -9,20 +9,20 @@ html(lang='en')
             a.toggle(gumby-trigger='#nav1 > ul', href='#')
                 i.icon-menu
             h1.four.columns.logo
-                i HB
+                img(src='/img/hubbub-icon.png')
             ul.eight.columns
-                li
-                    a(href='/#/') Home
-                li(ng-show="user.id == ''")
-                    a(href='/#/merchants/login/as') Merchant Login
-                li(ng-show="user.id == ''")
-                    a(href='/#/clients/login/as') Client Login
+                li(ng-class="matchPath('/')")
+                    a(href='/#/') home
+                li(ng-show="user.id == ''", ng-class="matchPath('/merchants')")
+                    a(href='/#/merchants/login/as') merchant login
+                li(ng-show="user.id == ''", ng-class="matchPath('/clients')")
+                    a(href='/#/clients/login/as') client login
+                li(ng-show="user.id != ''", ng-class="matchPath('/'+ user.type)")
+                    a(href='/#/{{user.type}}/{{user.id}}') profile
+                li(ng-show="user.id != ''", ng-class="matchPath('/interactions')")
+                    a(href='/#/interactions') interactions
                 li(ng-show="user.id != ''")
-                    a(href='/#/{{user.type}}/{{user.id}}') Profile
-                li(ng-show="user.id != ''")
-                    a(href='/#/interactions') Interactions
-                li(ng-show="user.id != ''")
-                    a(href='#', ng-click='logOut()') Log Out
+                    a(href='#', ng-click='logOut()') log out
     #wrapper.row
 
         .container.columns.twelve(ng-view='')

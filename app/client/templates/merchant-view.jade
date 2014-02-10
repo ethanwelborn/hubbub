@@ -7,6 +7,10 @@ h1.
 		.alert.danger(ng-show='error.empty').
 			All fields must be filled out
 
+		.alert.success(ng-show='success.updated').
+			Your account has been updated
+
+
 		form(ng-submit='updateMerchant()', name='merchantUpdate')
 			label.
 				your name

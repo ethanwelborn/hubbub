@@ -39,7 +39,7 @@ app.get('/api/v1/clients/:id', client.findById);
 app.post('/api/v1/clients/attempt/login', client.loginAs);
 app.post('/api/v1/clients', client.addClient);
 app.put('/api/v1/clients/:id', client.updateClient);
-app.delete('/api/v1/clients/:id', client.deleteClient);
+// app.delete('/api/v1/clients/:id', client.deleteClient);
 
 /**
  * Merchant Routes
@@ -49,7 +49,7 @@ app.get('/api/v1/merchants/:id', merchant.findById);
 app.post('/api/v1/merchants/attempt/login', merchant.loginAs);
 app.post('/api/v1/merchants', merchant.addMerchant);
 app.put('/api/v1/merchants/:id', merchant.updateMerchant);
-app.delete('/api/v1/merchants/:id', merchant.deleteMerchant);
+// app.delete('/api/v1/merchants/:id', merchant.deleteMerchant);
 
 /**
  * Interaction Routes
@@ -57,8 +57,8 @@ app.delete('/api/v1/merchants/:id', merchant.deleteMerchant);
 app.get('/api/v1/interactions/all/:id', interaction.findAll);
 app.get('/api/v1/interactions/:id', interaction.findById);
 app.post('/api/v1/interactions', interaction.addInteraction);
-app.put('/api/v1/interactions/:id', interaction.updateInteraction);
-app.delete('/api/v1/interactions/:id', interaction.deleteInteraction);
+// app.put('/api/v1/interactions/:id', interaction.updateInteraction);
+// app.delete('/api/v1/interactions/:id', interaction.deleteInteraction);
 app.get('/api/v1/interactions/:clientId/:merchantId', interaction.findInteractions)
 
 

@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('hubbubApp')
-  .controller('ClientViewCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+  .controller('ClientViewCtrl', ['$scope', '$routeParams', '$http', '$cookies', function ($scope, $routeParams, $http, $cookies) {
     $scope.client = {};
 
     $scope.error = {};
+    $scope.success = {};
 
     $http.get('/api/v1/clients/' + $routeParams.clientId)
     	.success(function (data) {
@@ -14,6 +15,7 @@ angular.module('hubbubApp')
 	$scope.updateClient = function() {
 
 		$scope.error = {};
+		$scope.success = {};
 
 		if (!$scope.client.name || !$scope.client.username || !$scope.client.password) {
 			$scope.error.empty = true;
@@ -21,7 +23,7 @@ angular.module('hubbubApp')
 		}
 
 		$http.put(
-            '/api/v1/clients/' + $cookies.hubbub_id,
+            '/api/v1/clients/' + $cookies.hubbub_loggedIn,
             JSON.stringify($scope.client),
             {
                 headers: {
@@ -30,7 +32,7 @@ angular.module('hubbubApp')
             }
         ).success(function (data) {
             if (data != '') {
-
+            	$scope.success.updated = true;
             }
             else {
                 $scope.error.invalid = true;

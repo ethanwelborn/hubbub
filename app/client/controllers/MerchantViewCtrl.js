@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('hubbubApp')
-  .controller('MerchantViewCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+  .controller('MerchantViewCtrl', ['$scope', '$routeParams', '$http', '$cookies', function ($scope, $routeParams, $http, $cookies) {
     $scope.merchant = {};
 
     $scope.error = {};
+    $scope.success = {};
 
     $http.get('/api/v1/merchants/' + $routeParams.merchantId)
     	.success(function (data) {
@@ -13,6 +14,7 @@ angular.module('hubbubApp')
 
 	$scope.updateMerchant = function() {
 		$scope.error = {};
+		$scope.success = {};
 
 		if (!$scope.merchant.name || !$scope.merchant.username || !$scope.merchant.password) {
 			$scope.error.empty = true;
@@ -20,8 +22,8 @@ angular.module('hubbubApp')
 		}
 
 		$http.put(
-            '/api/v1/merchants/' + $cookies.hubbub_id,
-            JSON.stringify($scope.client),
+            '/api/v1/merchants/' + $cookies.hubbub_loggedIn,
+            JSON.stringify($scope.merchant),
             {
                 headers: {
                     'Content-Type': 'application/json'
@@ -29,7 +31,7 @@ angular.module('hubbubApp')
             }
         ).success(function (data) {
             if (data != '') {
-
+            	$scope.success.updated = true;
             }
             else {
                 $scope.error.invalid = true;

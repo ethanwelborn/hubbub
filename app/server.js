@@ -6,13 +6,6 @@ var express = require('express'),
 	interaction = require('./routes/interactions');
 
 var app = express();
-var wwwhisper;
-
-// wwwhisper setup for heroku
-if (process.env.PORT) {
-	wwwhisper = require('connect-wwwhisper');
-	app.use(wwwhisper());
-}
 
 app.configure(function() {
 	app.set('port', process.env.PORT || 5000);

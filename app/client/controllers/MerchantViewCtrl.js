@@ -1,7 +1,12 @@
 'use strict';
 
 angular.module('hubbubApp')
-  .controller('MerchantViewCtrl', ['$scope', '$routeParams', '$http', '$cookies', function ($scope, $routeParams, $http, $cookies) {
+  .controller('MerchantViewCtrl', ['$scope', '$routeParams', '$http', '$cookies', '$location', function ($scope, $routeParams, $http, $cookies, $location) {
+    
+    if (!$cookies.hubbub_loggedIn) {
+        $location.path('/');
+    }
+
     $scope.merchant = {};
 
     $scope.error = {};

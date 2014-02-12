@@ -15,18 +15,15 @@ h1.
 			label.
 				your name
 			.field
-				input.wide.input(type='text', ng-required='true', placeholder='client name', name='name', ng-model='client.name', required='true') 
-				label.label.info(ng-show='clientUpdate.name.$error.required') This field is required
+				input.input(type='text', ng-required='true', placeholder='client name', name='name', ng-model='client.name', required='true')
 			label.
 					your username
 			.field
-				input.wide.input(type='text', placeholder='client username', name='username', ng-model='client.username', required='true')
-				label.label.info(ng-show='clientUpdate.username.$error.required') This field is required
+				input.input(type='text', placeholder='client username', name='username', ng-model='client.username', required='true')
 			label.
 				your password
 			.field
-				input.wide.input(type='password', placeholder='client password', name='password', ng-model='client.password', required='true')
-				label.label.info(ng-show='clientUpdate.password.$error.required') This field is required
+				input.input(type='password', placeholder='client password', name='password', ng-model='client.password', required='true')
 			.info.btn.metro.medium.icon-right.entypo.icon-arrows-ccw
 				a(ng-click='updateClient()') Update Account
 				input.ghost-submit(type='submit', hidefocus='true', tabindex='-1')

@@ -1,7 +1,12 @@
 'use strict';
 
 angular.module('hubbubApp')
-  .controller('ClientViewCtrl', ['$scope', '$routeParams', '$http', '$cookies', function ($scope, $routeParams, $http, $cookies) {
+  .controller('ClientViewCtrl', ['$scope', '$routeParams', '$http', '$cookies', '$location', function ($scope, $routeParams, $http, $cookies, $location) {
+    
+    if (!$cookies.hubbub_loggedIn) {
+        $location.path('/');
+    }
+
     $scope.client = {};
 
     $scope.error = {};

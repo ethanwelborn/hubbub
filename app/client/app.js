@@ -19,10 +19,6 @@ angular.module('hubbubApp', ['ngCookies'])
         templateUrl: '/templates/client-view',
         controller: 'ClientViewCtrl'
       })
-      .when('/clients/:clientId/edit', {
-        templateUrl: '/templates/client-edit',
-        controller: 'ClientEditCtrl'
-      })
       .when('/clients/create/new', {
         templateUrl: '/templates/client-new',
         controller: 'ClientNewCtrl'
@@ -38,10 +34,6 @@ angular.module('hubbubApp', ['ngCookies'])
       .when('/merchants/:merchantId', {
         templateUrl: '/templates/merchant-view',
         controller: 'MerchantViewCtrl'
-      })
-      .when('/merchants/:merchantId/edit', {
-        templateUrl: '/templates/merchant-edit',
-        controller: 'MerchantEditCtrl'
       })
       .when('/merchants/create/new', {
         templateUrl: '/templates/merchant-new',

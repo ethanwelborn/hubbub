@@ -1,0 +1,9 @@
+p.
+	interaction client list ctrl
+
+div(ng-repeat='interaction in interactions')
+	p {{interaction.metric}}
+	p {{interaction.clientId}}
+	p {{interaction.merchantId}}
+	a(href='/#/interactions/{{interaction._id}}') view
+	hr

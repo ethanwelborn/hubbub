@@ -1,0 +1,22 @@
+h1.
+	client <span class='mint'>login</span>
+
+.row
+	.eight.columns
+		.alert.danger(ng-show='error.invalid').
+			Invalid Username/Password Combination
+
+		.alert.danger(ng-show='error.empty').
+			All fields must be filled out
+		
+		form(ng-submit='login()')
+			.field
+				input.input(type='text', placeholder='username', name='client[username]', ng-model='client.username')
+			.field
+				input.input(type='password', placeholder='password', name='client[password]', ng-model='client.password')
+			.info.btn.metro.medium.icon-right.entypo.icon-login
+				a(ng-click='login()') Log In
+				input.ghost-submit(type='submit', hidefocus='true', tabindex='-1')
+		
+	.four.columns.
+		or <a href='/#/clients/create/new'>create a new account.</a>

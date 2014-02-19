@@ -1,23 +1,47 @@
 var mongo = require('mongodb');
 
 var Server = mongo.Server,
-	Db = mongo.Db,
-	BSON = mongo.BSONPure;
+    Db = mongo.Db,
+    BSON = mongo.BSONPure;
 
-var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('clientdb', server);
+db = null;
 
-db.open(function(err, db) {
-	if (!err) {
-		console.log("Connected to 'clientdb' database");
-		db.collection('clients', {strict:true}, function(err, collection) {
-			if (err) {
-				console.log("The 'clients' collection doesn't exist. Creating it with sample data..");
-				populateDB();
-			}
-		})
-	}
-});
+var mongoUri = process.env.MONGOLAB_URI || 'localhost';
+
+if (process.env.MONGOLAB_URI) {
+    //heroku
+    var dbConnectionOpen = function(err, database) {
+        db = database;
+        if (!err) {
+            console.log("Connected to 'hubbubdb' database");
+            db.collection('clients', {safe: true}, function(err, collection) {
+                if (err) {
+                    console.log("The 'clients' collection doesn't exist.");
+                    populateDB();
+                }
+            });
+        }
+    };
+
+    mongo.connect(mongoUri, {}, dbConnectionOpen);
+}
+else {
+    // local dev
+    var server = new Server(mongoUri, 27017, {auto_reconnect: true});
+    db = new Db('hubbubdb', server, {safe: true});
+
+    db.open(function(err, db) {
+        if (!err) {
+            console.log("Connected to 'hubbubdb' database");
+            db.collection('clients', {strict: true}, function(err, collection) {
+                if (err) {
+                    console.log("The 'clients' collection doesn't exist.");
+                    // populateDB();
+                }
+            })
+        }
+    });
+}
 
 exports.findAll = function(req, res) {
 	db.collection('clients', function(err, collection) {
@@ -37,13 +61,25 @@ exports.findById = function(req, res) {
     });
 };
 
+exports.loginAs = function(req, res) {
+    var username, password;
+    username = req.body.username;
+    password = req.body.password;
+    console.log('Attempting login as: ' + username + ' with password ' + password);
+    db.collection('clients', function(err, collection) {
+        collection.findOne({'username': username, 'password': password}, function(err, item) {
+            res.send(item);
+        });
+    });
+};
+
 exports.addClient = function(req, res) {
 	var client = req.body;
 	console.log('Adding client: ' + JSON.stringify(client));
-	db.collection('client', function(err, collection) {
+	db.collection('clients', function(err, collection) {
 		collection.insert(client, {safe: true}, function(err, result) {
 			if (err) {
-				res.send({'error': 'An error has occured.'});
+				res.send({'error': 'An error has occured - ' + err});
 			}
 			else {
 				console.log('Success: ' + JSON.stringify(result[0]));

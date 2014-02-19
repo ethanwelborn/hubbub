@@ -1,0 +1,60 @@
+// Your custom SCSS should be written here...
+@import "custom-mixins";
+@import "custom-reusable";
+
+// Header Area
+.logo {
+	img {
+		height:50px;
+	}
+}
+
+h1,h2,h3,h4,h5,h6 {
+	text-transform:uppercase;
+}
+
+.navbar {
+	ul {
+		li {
+			&>a {
+				&:hover {
+					text-decoration: none;	
+				}
+			}
+		}
+		li.active {
+			background: $black;
+			a {
+				color: $mint;
+			}
+		}
+	}
+}
+
+// Links
+a {
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+// Buttons
+.btn {
+	a {
+		color: $mint;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+// Labels
+label.info {
+	background: $info-color;
+	color: $mint;
+}
+
+// Tables
+th {
+	color: $black;
+}

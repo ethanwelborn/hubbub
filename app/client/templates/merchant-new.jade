@@ -1,0 +1,25 @@
+h1.
+	merchant <span class='mint'>creation</span>
+
+.row
+	.eight.columns
+		form(ng-submit='createMerchant()', name='merchantCreate')
+			
+			.alert.danger(ng-show='error.invalid').
+				There was an error in your request. Please try again
+
+			.alert.danger(ng-show='error.empty').
+				All fields must be filled out
+
+			.field
+				input.input(type='text', ng-required='true', placeholder='merchant name', name='name', ng-model='merchant.name', required='true')
+			.field
+				input.input(type='text', placeholder='merchant username', name='username', ng-model='merchant.username', required='true')
+			.field
+				input.input(type='text', placeholder='merchant password', name='password', ng-model='merchant.password', required='true')
+			.info.btn.metro.medium.icon-right.entypo.icon-user-add
+				a(ng-click='createMerchant()') Create Account
+				input.ghost-submit(type='submit', hidefocus='true', tabindex='-1')
+
+	.four.columns.
+		back to <a href='/#/merchants/login/as'>merchant login</a>

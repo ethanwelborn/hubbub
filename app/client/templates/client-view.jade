@@ -1,0 +1,29 @@
+h1.
+	update profile
+
+.row
+	.eight.columns
+
+		.alert.danger(ng-show='error.empty').
+			All fields must be filled out
+
+		.alert.success(ng-show='success.updated').
+			Your account has been updated
+
+
+		form(ng-submit='updateClient()', name='clientUpdate')
+			label.
+				your name
+			.field
+				input.input(type='text', ng-required='true', placeholder='client name', name='name', ng-model='client.name', required='true')
+			label.
+					your username
+			.field
+				input.input(type='text', placeholder='client username', name='username', ng-model='client.username', required='true')
+			label.
+				your password
+			.field
+				input.input(type='password', placeholder='client password', name='password', ng-model='client.password', required='true')
+			.info.btn.metro.medium.icon-right.entypo.icon-arrows-ccw
+				a(ng-click='updateClient()') Update Account
+				input.ghost-submit(type='submit', hidefocus='true', tabindex='-1')

@@ -1,19 +1,48 @@
 doctype html
-html(lang="en")
+html(lang='en')
   head
     title= pageTitle
-  body
-    h1 Jade - node template engine
-    #container.col
-      if youAreUsingJade
-        p You are amazing
-      else
-        p Get on it!
-      p.
-        Jade is a terse and simple
-        templating language with a
-        strong focus on performance
-        and powerful features.
+    link(rel='stylesheet', href='/css/gumby.css', type='text/css')
+  body(ng-app='hubbubApp', ng-controller='PageCtrl')
+    #main-nav.navbar.metro
+        .row
+            a.toggle(gumby-trigger='#nav1 > ul', href='#')
+                i.icon-menu
+            h1.four.columns.logo
+                img(src='/img/hubbub-icon.png')
+            ul.eight.columns
+                li(ng-class="matchPath('/')")
+                    a(href='/#/') home
+                li(ng-show="user.id == ''", ng-class="matchPath('/merchants')")
+                    a(href='/#/merchants/login/as') merchant login
+                li(ng-show="user.id == ''", ng-class="matchPath('/clients')")
+                    a(href='/#/clients/login/as') client login
+                li(ng-show="user.id != ''", ng-class="matchPath('/'+ user.type)")
+                    a(href='/#/{{user.type}}/{{user.id}}') profile
+                li(ng-show="user.id != ''", ng-class="matchPath('/interactions')")
+                    a(href='/#/interactions') interactions
+                li(ng-show="user.id != ''")
+                    a(href='#', ng-click='logOut()') log out
+    #wrapper.row
 
-    script(type='text/javascript', src='/app.js')
-    script(type='text/javascript', src='/js/controllers/home.js')
+        .container.columns.twelve(ng-view='')
+
+    script(type='text/javascript', src='/components/angular/angular.min.js')
+    script(type='text/javascript', src='/components/angular-cookies/angular-cookies.min.js')
+    script(type='text/javascript', src='/js/app.js')
+    script(type='text/javascript', src='/js/controllers/PageCtrl.js')
+    script(type='text/javascript', src='/js/controllers/HomeCtrl.js')
+    script(type='text/javascript', src='/js/controllers/ClientListCtrl.js')
+    script(type='text/javascript', src='/js/controllers/ClientViewCtrl.js')
+    script(type='text/javascript', src='/js/controllers/ClientEditCtrl.js')
+    script(type='text/javascript', src='/js/controllers/ClientNewCtrl.js')
+    script(type='text/javascript', src='/js/controllers/ClientLoginCtrl.js')
+    script(type='text/javascript', src='/js/controllers/MerchantListCtrl.js')
+    script(type='text/javascript', src='/js/controllers/MerchantViewCtrl.js')
+    script(type='text/javascript', src='/js/controllers/MerchantEditCtrl.js')
+    script(type='text/javascript', src='/js/controllers/MerchantNewCtrl.js')
+    script(type='text/javascript', src='/js/controllers/MerchantLoginCtrl.js')
+    script(type='text/javascript', src='/js/controllers/InteractionClientListCtrl.js')
+    script(type='text/javascript', src='/js/controllers/InteractionListCtrl.js')
+    script(type='text/javascript', src='/js/controllers/InteractionMerchantListCtrl.js')
+    script(type='text/javascript', src='/js/controllers/InteractionViewCtrl.js')

@@ -1,0 +1,25 @@
+h1.
+	client <span class='mint'>creation</span>
+
+.row
+	.eight.columns
+		form(ng-submit='createClient()', name='clientCreate')
+
+			.alert.danger(ng-show='error.invalid').
+				There was an error in your request. Please try again
+
+			.alert.danger(ng-show='error.empty').
+				All fields must be filled out
+
+			.field
+				input.input(type='text', ng-required='true', placeholder='client name', name='name', ng-model='client.name', required='true')
+			.field
+				input.input(type='text', placeholder='client username', name='username', ng-model='client.username', required='true')
+			.field
+				input.input(type='text', placeholder='client password', name='password', ng-model='client.password', required='true')
+			.info.btn.metro.medium.icon-right.entypo.icon-user-add
+				a(ng-click='createClient()') Create Account
+				input.ghost-submit(type='submit', hidefocus='true', tabindex='-1')
+
+	.four.columns.
+		back to <a href='/#/clients/login/as'>client login</a>

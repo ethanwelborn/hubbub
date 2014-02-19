@@ -1,0 +1,29 @@
+h1.
+	update profile
+
+.row
+	.eight.columns
+
+		.alert.danger(ng-show='error.empty').
+			All fields must be filled out
+
+		.alert.success(ng-show='success.updated').
+			Your account has been updated
+
+
+		form(ng-submit='updateMerchant()', name='merchantUpdate')
+			label.
+				your name
+			.field
+				input.input(type='text', ng-required='true', placeholder='merchant name', name='name', ng-model='merchant.name', required='true')
+			label.
+					your username
+			.field
+				input.input(type='text', placeholder='merchant username', name='username', ng-model='merchant.username', required='true')
+			label.
+				your password
+			.field
+				input.input(type='password', placeholder='merchant password', name='password', ng-model='merchant.password', required='true')
+			.info.btn.metro.medium.icon-right.entypo.icon-arrows-ccw
+				a(ng-click='updateMerchant()') Update Account
+				input.ghost-submit(type='submit', hidefocus='true', tabindex='-1')

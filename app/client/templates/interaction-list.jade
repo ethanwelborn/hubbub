@@ -1,17 +1,21 @@
+h3. Your interactions
+
 table.striped
-	thead
-		tr
-			th.
-				Client
-			th.
-				Merchant
-			th.
-				Metric
-			th.
-				Link
-	tr(ng-repeat='interaction in interactions')
-		td {{interaction.clientId}}
-		td {{interaction.merchantId}}
-		td {{interaction.metric}}
-		td
-			a(href='/#/interactions/{{interaction._id}}') View Interaction
+  thead
+    tr
+      th.
+        Client
+      th.
+        Merchant
+      th.
+        Metric
+      th.
+        Link
+  tr(ng-repeat='interaction in interactions')
+    td(ng-show="user.type == 'merchants'") {{interaction.clientId}} <a href="/#/interactions/clients/{{interaction.clientId}}">More of these</a>
+    td(ng-show="user.type == 'merchants'") {{user.username}} (You)
+    td(ng-show="user.type == 'clients'") {{user.username}} (You)
+    td(ng-show="user.type == 'clients'") {{interaction.merchantId}} <a href="/#/interactions/merchants/{{interaction.merchantId}}">More of these</a>
+    td {{interaction.metric}}
+    td
+      a(href='/#/interactions/{{interaction._id}}') View Interaction

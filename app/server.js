@@ -21,10 +21,17 @@ app.configure(function() {
   app.use('/img', express.static(path.join(__dirname, 'client/assets/img')));
   app.use('/css', express.static(path.join(__dirname, 'client/assets/gumby/css')));
   app.use('/fonts', express.static(path.join(__dirname, 'client/assets/gumby/fonts')));
-  app.use(function(req, res, next) {
-    var reqType = req.headers["x-forwarded-proto"];
-      reqType == 'https' ? next() : res.redirect("https://" + req.headers.host + req.url);
-  });
+});
+
+
+// Redirect HTTPS if possible
+app.get('*',function(req,res,next){
+  if (req.headers['x-forwarded-proto'] && req.headers['x-forwarded-proto'] != 'https') {
+    res.redirect('https://' + req.headers.host + req.url);
+  }
+  else {
+    next();
+  }
 });
 
 app.get('/', function(req, res) {

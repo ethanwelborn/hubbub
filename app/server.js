@@ -1,36 +1,41 @@
 require('newrelic');
 var express = require('express'),
-	path = require('path'),
-    http = require('http'),
-	client = require('./routes/clients'),
-	merchant = require('./routes/merchants'),
-	interaction = require('./routes/interactions');
+  path = require('path'),
+  http = require('http'),
+  client = require('./routes/clients'),
+  merchant = require('./routes/merchants'),
+  interaction = require('./routes/interactions');
 
 var app = express();
 
 app.configure(function() {
-	app.set('port', process.env.PORT || 5000);
-	app.set('view engine', 'jade');
-	app.set('views', __dirname);
-	app.use(express.logger('dev'));
-	app.use(express.bodyParser());
-	app.use(express.methodOverride());
-	app.use(app.router);
-	app.use('/components', express.static(path.join(__dirname, 'bower_components')));
-  	app.use('/js', express.static(path.join(__dirname, 'client')));
-  	app.use('/img', express.static(path.join(__dirname, 'client/assets/img')));
-  	app.use('/css', express.static(path.join(__dirname, 'client/assets/gumby/css')));
-  	app.use('/fonts', express.static(path.join(__dirname, 'client/assets/gumby/fonts')));
+  app.set('port', process.env.PORT || 5000);
+  app.set('view engine', 'jade');
+  app.set('views', __dirname);
+  app.use(express.logger('dev'));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
+  app.use('/components', express.static(path.join(__dirname, 'bower_components')));
+  app.use('/js', express.static(path.join(__dirname, 'client')));
+  app.use('/img', express.static(path.join(__dirname, 'client/assets/img')));
+  app.use('/css', express.static(path.join(__dirname, 'client/assets/gumby/css')));
+  app.use('/fonts', express.static(path.join(__dirname, 'client/assets/gumby/fonts')));
+  app.use(function(req, res, next) {
+    var reqType = req.headers["x-forwarded-proto"];
+      reqType == 'https' ? next() : res.redirect("https://" + req.headers.host + req.url);
+  });
 });
 
 app.get('/', function(req, res) {
-	res.render('index.jade');
+  res.render('index.jade');
 });
 
 app.get('/templates/:name', function (req, res)
-	{ var name = req.params.name;
-	res.render('client/templates/' + name);
+  { var name = req.params.name;
+  res.render('client/templates/' + name);
 });
+
 
 /**
  * Client Routes

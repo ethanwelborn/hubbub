@@ -1,4 +1,4 @@
-h2. Your interactions with<br><span class='mint'>{{interactions[0].clientId}}</span>
+h2. Your interactions with<br><span class='mint'>{{interactions[0].clientName}}</span>
 
 table.striped
   thead
@@ -11,11 +11,14 @@ table.striped
         Metric
       th.
         Link
+      th.
+        Date
   tr(ng-repeat='interaction in interactions')
-    td(ng-show="user.type == 'merchants'") {{interaction.clientId}}
+    td(ng-show="user.type == 'merchants'") {{interaction.clientName || interaction.clientId}}
     td(ng-show="user.type == 'merchants'") {{user.username}} (You)
     td(ng-show="user.type == 'clients'") {{user.username}} (You)
-    td(ng-show="user.type == 'clients'") {{interaction.merchantId}}
+    td(ng-show="user.type == 'clients'") {{interaction.merchantName || interaction.merchantId}}
     td {{interaction.metric}}
     td
       a(href='/#/interactions/{{interaction._id}}') View Interaction
+    td {{interaction.timestamp | date:'short'}}

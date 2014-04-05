@@ -3,6 +3,6 @@ h2. Interaction <span class="mint">{{interaction._id}}</span>
 div
   h4. Metric <span class="mint">{{interaction.metric}}</span>
   h4(ng-show="user.type == 'clients'") {{user.username}} (You)
-  h4(ng-show="user.type == 'merchants'"). Client <span class="mint">{{interaction.username}}</span>
+  h4(ng-show="user.type == 'merchants'"). Client <span class="mint">{{interaction.username || interaction.clientId}}</span>
   h4(ng-show="user.type == 'merchants'"). {{user.username}} (You)
-  h4(ng-show="user.type == 'clients'"). Merchant <span class="mint">{{interaction.username}}</span>
+  h4(ng-show="user.type == 'clients'"). Merchant <span class="mint">{{interaction.username || interaction.merchantId}}</span>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hubbubApp')
-  .controller('MerchantNewCtrl', ['$http', '$scope', function ($http, $scope) {
+  .controller('MerchantNewCtrl', ['$http', '$scope', '$cookies', '$location', function ($http, $scope, $cookies, $location) {
     $scope.merchant = {};
 
     $scope.error = {};
@@ -25,7 +25,10 @@ angular.module('hubbubApp')
             }
         ).success(function (data) {
             if (data != '') {
-                
+                $cookies.hubbub_loggedIn = data._id;
+                $cookies.hubbub_username = data.username;
+                $cookies.hubbub_type = 'merchants';
+                $location.path('/merchants/'+$cookies.hubbub_loggedIn);
             }
             else {
                 $scope.error.invalid = true;

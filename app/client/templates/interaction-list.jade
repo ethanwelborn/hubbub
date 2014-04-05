@@ -11,6 +11,8 @@ table.striped
         Metric
       th.
         Link
+      th.
+        Date
   tr(ng-repeat='interaction in interactions')
     td(ng-show="user.type == 'merchants'") {{interaction.clientName || interaction.clientId}} <a href="/#/interactions/clients/{{interaction.clientId}}">More of these</a>
     td(ng-show="user.type == 'merchants'") {{user.username}} (You)
@@ -19,3 +21,4 @@ table.striped
     td {{interaction.metric}}
     td
       a(href='/#/interactions/{{interaction._id}}') View Interaction
+    td {{interaction.timestamp  | date:'medium'}}

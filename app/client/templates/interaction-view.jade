@@ -6,3 +6,4 @@ div
   h4(ng-show="user.type == 'merchants'"). Client <span class="mint">{{interaction.clientName || interaction.clientId}}</span>
   h4(ng-show="user.type == 'merchants'"). {{user.username}} (You)
   h4(ng-show="user.type == 'clients'"). Merchant <span class="mint">{{interaction.merchantName || interaction.merchantId}}</span>
+  h4. Date {{interaction.timestamp | date:'medium'}}

@@ -22,7 +22,7 @@ angular.module('hubbubApp')
         if (!interaction.timestamp) {
           interaction.timestamp = '';
         }
-        interaction.timestamp = new Date(interaction.timestamp.replace(/-/g,"/"));
+        interaction.timestamp = new Date(interaction.timestamp);
       }
     }
   }]);

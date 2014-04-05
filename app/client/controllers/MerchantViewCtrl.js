@@ -26,9 +26,14 @@ angular.module('hubbubApp')
 			return;
 		}
 
+        var newObj = {};
+        newObj.name = $scope.merchant.name;
+        newObj.username = $scope.merchant.username;
+        newObj.password = $scope.merchant.password;
+
 		$http.put(
             '/api/v1/merchants/' + $cookies.hubbub_loggedIn,
-            JSON.stringify($scope.merchant),
+            JSON.stringify(newObj),
             {
                 headers: {
                     'Content-Type': 'application/json'

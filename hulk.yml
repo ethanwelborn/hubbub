@@ -1,0 +1,4 @@
+deploy:
+  - git add .
+  - git commit -m 'Making changes and sending build via hulk to server'
+  - deploy-hub

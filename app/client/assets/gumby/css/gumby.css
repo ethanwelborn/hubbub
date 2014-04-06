@@ -1712,3 +1712,5 @@ a:hover { text-decoration: underline; }
 label.info { background: #4a4d50; color: #88f4d0; }
 
 th { color: black; }
+
+td { font-weight: bold; }

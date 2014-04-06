@@ -1,4 +1,5 @@
 var mongo = require('mongodb');
+var crypto = require("crypto");
 
 var Server = mongo.Server,
     Db = mongo.Db,
@@ -75,6 +76,7 @@ exports.loginAs = function(req, res) {
 
 exports.addMerchant = function(req, res) {
 	var merchant = req.body;
+    merchant.secretKey = crypto.randomBytes(20).toString('hex'); // creating random key
 	console.log('Adding merchant: ' + JSON.stringify(merchant));
 	db.collection('merchants', function(err, collection) {
 		collection.insert(merchant, {safe: true}, function(err, result) {

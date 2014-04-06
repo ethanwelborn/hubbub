@@ -24,6 +24,7 @@ angular.module('hubbubApp')
                 }
             }
         ).success(function (data) {
+            console.log(data);
             if (!String(data).match(/error/g)) {
                 $cookies.hubbub_loggedIn = data._id;
                 $cookies.hubbub_username = data.username;

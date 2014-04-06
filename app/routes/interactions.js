@@ -103,7 +103,7 @@ exports.addInteraction = function(req, res) {
     	});
     }
     else {
-        console.log("Failed to match " + secretKey + " and " + merchantId " to database.");
+        console.log("Failed to match " + secretKey + " and " + merchantId + " to database.");
     }
 };
 

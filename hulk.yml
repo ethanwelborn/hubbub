@@ -1,4 +1,5 @@
 deploy:
   - git add .
   - git commit -m 'Making changes and sending build via hulk to server'
-  - deploy-hub
+  - git push origin master
+  - git push -f heroku dev:master

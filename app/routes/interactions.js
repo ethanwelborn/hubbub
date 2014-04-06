@@ -76,8 +76,8 @@ exports.findById = function(req, res) {
 
 exports.addInteraction = function(req, res) {
 	var interaction = req.body;
-    var secretKey = req.params.merchantSecretKey;
-    var merchantId = req.params.merchantId;
+    var secretKey = interaction.merchantSecretKey;
+    var merchantId = interaction.merchantId;
     var matchedMerchant = null;
 
 	console.log('Adding interaction: ' + JSON.stringify(interaction));
@@ -101,6 +101,9 @@ exports.addInteraction = function(req, res) {
     			}
     		});
     	});
+    }
+    else {
+        console.log("Failed to match " + secretKey + " and " + merchantId " to database.");
     }
 };
 

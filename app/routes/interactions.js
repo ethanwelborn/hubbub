@@ -76,7 +76,7 @@ exports.findById = function(req, res) {
 
 exports.addInteraction = function(req, res) {
 	var interaction = req.body;
-    var secretKey = req.params.merchantKey;
+    var secretKey = req.params.merchantSecretKey;
     var merchantId = req.params.merchantId;
     var matchedMerchant = null;
 

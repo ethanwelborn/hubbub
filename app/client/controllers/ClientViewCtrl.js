@@ -40,7 +40,7 @@ angular.module('hubbubApp')
                 }
             }
         ).success(function (data) {
-            if (!data.match(/error/g)) {
+            if (!String(data).match(/error/g)) {
             	$scope.success.updated = true;
             }
             else {

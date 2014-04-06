@@ -86,6 +86,7 @@ exports.addInteraction = function(req, res) {
     db.collection('merchants', function(err, collection) {
         collection.find( { $and: [ {'secretKey': secretKey}, {'_id': merchantId} ] }).toArray(function(err, items) {
             matchedMerchant = items;
+            console.log("Matched merchant key to existing merchant.");
         });
     });
 

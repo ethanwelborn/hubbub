@@ -1,4 +1,8 @@
+h2. Interaction on <span class="mint">{{interaction.timestamp | date:'short'}}</span>
+
 div
-	p {{interaction.metric}}
-	p {{interaction.clientId}}
-	p {{interaction.merchantId}}
+  h4. Metric <span class="mint">{{interaction.metric}}</span>
+  h4(ng-show="user.type == 'clients'"). Client <span class="mint">{{user.username}} (You)</span>
+  h4(ng-show="user.type == 'merchants'"). Client <span class="mint">{{interaction.clientName || interaction.clientId}}</span>
+  h4(ng-show="user.type == 'merchants'"). Merchant <span class="mint">{{user.username}} (You)</span>
+  h4(ng-show="user.type == 'clients'"). Merchant <span class="mint">{{interaction.merchantName || interaction.merchantId}}</span>

@@ -18,7 +18,6 @@ angular.module('hubbubApp')
 	    });
 
 	$scope.updateClient = function() {
-
 		$scope.error = {};
 		$scope.success = {};
 
@@ -27,16 +26,21 @@ angular.module('hubbubApp')
 			return;
 		}
 
+        var newObj = {};
+        newObj.name = $scope.client.name;
+        newObj.username = $scope.client.username;
+        newObj.password = $scope.client.password;
+
 		$http.put(
             '/api/v1/clients/' + $cookies.hubbub_loggedIn,
-            JSON.stringify($scope.client),
+            JSON.stringify(newObj),
             {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             }
         ).success(function (data) {
-            if (data != '') {
+            if (!String(data).match(/error/g)) {
             	$scope.success.updated = true;
             }
             else {

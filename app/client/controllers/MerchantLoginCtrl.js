@@ -28,7 +28,7 @@ angular.module('hubbubApp')
     				}
     			}
     		).success(function (data) {
-    			if (data != '') {
+    			if (!String(data).match(/error/g)) {
     				$cookies.hubbub_loggedIn = data._id;
                     $cookies.hubbub_username = data.username;
     				$cookies.hubbub_type = 'merchants';

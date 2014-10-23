@@ -76,18 +76,33 @@ exports.findById = function(req, res) {
 
 exports.addInteraction = function(req, res) {
 	var interaction = req.body;
+    var secretKey = interaction.merchantSecretKey;
+    var merchantId = interaction.merchantId;
+    var matchedMerchant = null;
+
 	console.log('Adding interaction: ' + JSON.stringify(interaction));
-	db.collection('interactions', function(err, collection) {
-		collection.insert(interaction, {safe: true}, function(err, result) {
-			if (err) {
-				res.send({'error': 'An error has occured - ' + err});
-			}
-			else {
-				console.log('Success: ' + JSON.stringify(result[0]));
-				res.send(result[0]);
-			}
-		});
-	});
+
+    // verify merchant secret key
+    db.collection('merchants', function(err, collection) {
+        collection.find( { $and: [ {'secretKey': secretKey}, {'_id': merchantId} ] }).toArray(function(err, items) {
+            matchedMerchant = items;
+            console.log("Matched merchant key to existing merchant.");
+
+            // Now insert into interaction db
+            db.collection('interactions', function(err, collection) {
+                collection.insert(interaction, {safe: true}, function(err, result) {
+                    if (err) {
+                        res.send({'error': 'An error has occured - ' + err});
+                    }
+                    else {
+                        console.log('Success: ' + JSON.stringify(result[0]));
+                        res.send(result[0]);
+                    }
+                });
+            });
+
+        });
+    });
 };
 
 exports.updateInteraction = function(req, res) {
